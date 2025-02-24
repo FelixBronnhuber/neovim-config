@@ -1,17 +1,11 @@
+local cmp = require "cmp"
+
 return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
-
-  -- {
-  --   "nvim-java/nvim-java",
-  --   event = "LspAttach",
-  --   config = function()
-  --     require("java").setup()
-  --   end,
-  -- },
 
   -- These are some examples, uncomment them if you want to see them work!
   {
@@ -49,9 +43,44 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     ---@module "ibl"
-    -- ---@type ibl.config
+    ---@class ibl.config
     opts = {
       indent = { char = "┊" },
     },
+  },
+
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    enabled = true,
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = true },
+      filetypes = { ["*"] = true },
+    },
+  },
+
+  {
+    "simrat39/symbols-outline.nvim",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    config = true,
+  },
+
+  {
+    "nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        opts = {},
+      },
+    },
+    ---@class opts cmp.ConfigSchema
+    opts = function(_, opts)
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
+      opts.mapping = cmp.config.mapping(vim.list_extend(opts.mapping, { ["<C-]>"] = cmp.mapping.select_prev_item() }))
+      opts.mapping = cmp.config.mapping(vim.list_extend(opts.mapping, { ["<C-[>"] = cmp.mapping.select_next_item() }))
+    end,
   },
 }
