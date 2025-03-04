@@ -105,7 +105,12 @@ return {
       indent = { enabled = true },
       input = { enabled = true },
       -- picker = { enabled = true },
-      notifier = { enabled = true },
+      notifier = {
+        enabled = true,
+        timeout = 6000,
+        top_down = false, -- place notifications from bottom to top
+        margin = { top = 0, right = 1, bottom = 1 },
+      },
       quickfile = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
