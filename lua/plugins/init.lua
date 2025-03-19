@@ -74,11 +74,12 @@ return {
     enabled = true,
     cmd = "Copilot",
     event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = true },
-      filetypes = { ["*"] = true },
-    },
+    config = function()
+      require("copilot").setup {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      }
+    end,
   },
 
   {
@@ -92,14 +93,21 @@ return {
     dependencies = {
       {
         "zbirenbaum/copilot-cmp",
-        opts = {},
+        config = function()
+          require("copilot_cmp").setup()
+        end,
       },
     },
     ---@class opts cmp.ConfigSchema
     opts = function(_, opts)
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
-      opts.mapping = cmp.config.mapping(vim.list_extend(opts.mapping, { ["<C-]>"] = cmp.mapping.select_prev_item() }))
-      opts.mapping = cmp.config.mapping(vim.list_extend(opts.mapping, { ["<C-[>"] = cmp.mapping.select_next_item() }))
+      opts.sources = {
+        { name = "copilot", group_index = 2 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "path", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "buffer", group_index = 3 },
+        { name = "treesitter", group_index = 3 },
+      }
     end,
   },
 
