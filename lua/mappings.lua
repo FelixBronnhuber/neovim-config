@@ -12,7 +12,7 @@ local map = vim.keymap.set
 -- map("n", "J", "5j", { desc = "Move down 5 lines" })
 -- map("n", "K", "5k", { desc = "Move up 5 lines" })
 
--- Custom mappings for teleskope
+-- Custom mappings for telescope
 map("n", "<leader><space>", require("telescope.builtin").find_files, {
   desc = "Telescope: Find Files",
 })

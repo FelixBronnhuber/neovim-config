@@ -118,6 +118,12 @@ return {
   },
 
   {
+    "nvim-tree/nvim-tree.lua",
+    cmd = "NvimTreeToggle",
+    keys = { { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" } },
+  },
+
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
@@ -127,7 +133,7 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
+      dashboard = { enabled = false },
       -- explorer = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
