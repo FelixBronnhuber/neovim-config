@@ -11,7 +11,6 @@ local servers = {
   "pyright",
   "dockerls",
   "docker_compose_language_service",
-  "cmake",
   "bashls",
 }
 
@@ -25,6 +24,14 @@ for _, lsp in ipairs(servers) do
     capabilities = nvlsp.capabilities,
   }
 end
+
+lspconfig.clangd.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  cmd = { "clangd", "--clang-tidy", "--log=verbose", "--background-index" },
+  init_options = { fallbackFlags = { "-std=c++17" } },
+}
 
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
