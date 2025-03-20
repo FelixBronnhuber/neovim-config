@@ -37,7 +37,7 @@ vim.schedule(function()
   require "mappings"
 end)
 
-if vim.fn.has "macunix" ~= 1 then
+if vim.fn.has "wsl" == 1 then
   vim.g.clipboard = {
     name = "win32yank-wsl",
     copy = {
