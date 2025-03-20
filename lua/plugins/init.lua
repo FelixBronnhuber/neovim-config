@@ -10,6 +10,13 @@ return {
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      -- Useful status updates for LSP.
+      { "j-hui/fidget.nvim", opts = {} },
+
+      -- Allows extra capabilities provided by nvim-cmp
+      "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
       require "configs.lspconfig"
     end,
