@@ -19,6 +19,9 @@ M.ui = {
   tabufline = {
     lazyload = false,
   },
+  telescope = {
+    style = "bordered",
+  },
 }
 
 -- Term

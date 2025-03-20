@@ -51,3 +51,5 @@ if vim.fn.has "wsl" == 1 then
     cache_enabled = true,
   }
 end
+
+vim.opt.relativenumber = true
